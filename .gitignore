@@ -4,8 +4,8 @@
 .Trashes
 ehthumbs.db
 Thumbs.db
-bin
-gen
+code/bin
+code/gen
 .idea
 ant.propeties
 local.properties

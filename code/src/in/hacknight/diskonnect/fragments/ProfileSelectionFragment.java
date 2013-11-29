@@ -52,8 +52,10 @@ public class ProfileSelectionFragment extends Fragment implements
 
 		Profile profile = (Profile) this.adapter.cachedObjs.get(position);
 		if (isSettingsMode) {
-			((MainActivity) getActivity())
-					.addFragmentToStack(new ProfileSettingsFragment());
+			ProfileSettingsFragment fragment = new ProfileSettingsFragment();
+			if (!profile.isAddNewRow)
+				fragment.profile = profile;
+			((MainActivity) getActivity()).addFragmentToStack(fragment);
 		} else {
 			FragmentManager fm = getActivity().getFragmentManager();
 			fm.popBackStack();

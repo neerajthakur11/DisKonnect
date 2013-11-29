@@ -8,34 +8,11 @@
         android:layout_height="wrap_content"
         android:orientation="vertical" >
 
-        <LinearLayout
+        <EditText
+            android:id="@+id/edittextProfileName"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="10dp" >
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Select DisKonnect time : " />
-
-            <Button
-                android:id="@+id/buttonDecrease"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="-" />
-
-            <TextView
-                android:id="@+id/textView1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="TextView" />
-
-            <Button
-                android:id="@+id/buttonIncrease"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="+" />
-        </LinearLayout>
+            android:layout_height="50dp"
+            android:hint="Profile Name" />
 
         <View
             android:layout_width="match_parent"
@@ -89,6 +66,57 @@
             android:layout_width="match_parent"
             android:layout_height="1dp"
             android:background="@android:color/darker_gray" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:orientation="horizontal" >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:text="Select DisKonnect time : " />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical" >
+
+                <Button
+                    android:id="@+id/buttonDecrease"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="-" />
+
+                <TextView
+                    android:id="@+id/textView1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:text="0 mins" />
+
+                <Button
+                    android:id="@+id/buttonIncrease"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="+" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@android:color/darker_gray" />
+
+        <Button
+            android:id="@+id/buttonSave"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_margin="10dp"
+            android:text="Save Changes" />
     </LinearLayout>
 
 </ScrollView>
