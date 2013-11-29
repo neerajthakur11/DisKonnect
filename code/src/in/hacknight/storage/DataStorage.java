@@ -67,7 +67,7 @@ public class DataStorage extends SQLiteOpenHelper {
                 String name = cursor.getString(cursor.getColumnIndex(PROFILE_NAME));
                 int duration = cursor.getInt(cursor.getColumnIndex(PROFILE_DURATION));
                 int property = cursor.getInt(cursor.getColumnIndex(PROFILE_PROPERTY));
-                list.add(new Profile(name, property, duration));
+                list.add(new Profile(name, property, duration, false));
                 cursor.moveToNext();
             }
         }
@@ -88,7 +88,7 @@ public class DataStorage extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase db) {
         db.execSQL(PROFILE_DATABASE_CREATE);
-        store(new Profile("default", 10, 1111), db);
+        store(new Profile("default", 10, 1111, false), db);
         db.execSQL(EVENT_DATABASE_CREATE);
     }
 
