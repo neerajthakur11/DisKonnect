@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
+import in.hacknight.model.Profile;
 
 import java.util.List;
 
@@ -14,9 +15,9 @@ public class ProfileAdaptor extends ArrayAdapter {
 
 
     private LayoutInflater inflator;
-    private List cachedObjs = null;
+    private List<Profile> cachedObjs = null;
 
-    public ProfileAdaptor(Context context, List objects) {
+    public ProfileAdaptor(Context context, List<Profile> objects) {
         super(context, 0, objects);
         this.cachedObjs = objects;
         this.inflator = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -31,8 +32,9 @@ public class ProfileAdaptor extends ArrayAdapter {
             rowView = convertView;
         }
         TextView tv = (TextView) rowView.findViewById(R.id.text1);
-        if (this.cachedObjs != null)
-           tv.setText((String) this.cachedObjs.get(position));
+        if (this.cachedObjs != null){
+           tv.setText(this.cachedObjs.get(position).name);
+        }
         return rowView;
     }
 }

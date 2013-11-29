@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import android.widget.ListView;
 import in.hacknight.adaptors.ProfileAdaptor;
 import in.hacknight.diskonnect.R;
+import in.hacknight.storage.DataStorage;
 
 import java.util.ArrayList;
 
@@ -22,12 +23,8 @@ public class ProfileSelectionFragment extends Fragment {
 		
 		View view = inflater.inflate(R.layout.frag_profile_selection, container, false);
         ListView lv = (ListView)view.findViewById(R.id.list_view);
-        ArrayList a = new ArrayList();
-        a.add("a");
-        a.add("a");
-        a.add("a");
-        a.add("a");
-        adapter = new ProfileAdaptor(getActivity(), a);
+        ArrayList allProfiles = (ArrayList) new DataStorage(getActivity()).getAllProfiles();
+        adapter = new ProfileAdaptor(getActivity(), allProfiles);
         lv.setAdapter(adapter);
 
 		return view;
