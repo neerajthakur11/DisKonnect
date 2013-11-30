@@ -158,7 +158,7 @@ class DisKonnectControlSmartWatch2 extends ControlExtension {
     @Override
     public void onResume() {
         Log.d(DisKonnectExtensionService.LOG_TAG, "Starting animation");
-        //mDisKonnected = AppState.getIsDisconnected(mContext);
+        mDisKonnected = AppState.getIsDisconnected(mContext);
         if (mDisKonnected)
     		sendImage(R.id.button_watch, R.drawable.btn_connect);
     	else
@@ -244,7 +244,7 @@ class DisKonnectControlSmartWatch2 extends ControlExtension {
             button.setOnClickListener(new OnClickListener() {
                 @Override
                 public void onClick() {
-                	if (mDisKonnected) {
+                	if (!mDisKonnected) {
                 		showLayout(R.layout.watch_list_view,null);
                         sendListCount(R.id.listView, accs.length);
 

@@ -4,6 +4,7 @@
     android:layout_width="@dimen/smart_watch_2_control_width"
     android:layout_height="@dimen/smart_watch_2_control_height"
     tools:ignore="ContentDescription,PxUsage" >
+    
 
     <ImageView
         android:id="@+id/button_watch"
