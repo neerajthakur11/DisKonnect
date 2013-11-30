@@ -75,9 +75,10 @@ public class HomeFragment extends Fragment {
 		if (AppState.getIsDisconnected(getActivity())) {
 			int profileId = AppState.getCurrentProfileId(getActivity());
 			Profile profile = (new DataStorage(getActivity()).getProfileById(profileId));
-			startTimer(profile.duration);
 			header.setText("Timer");
+			score.setText((Long.toString(profile.duration)) + " secs");
 			disconnected.setText("Connect");
+			startTimer(profile.duration);
 		} else {
 			stopTimer();
 			Button disconnected = (Button) view.findViewById(R.id.button_diconnected);
@@ -91,7 +92,7 @@ public class HomeFragment extends Fragment {
 	}
 
 	public void startTimer(int interval) {
-		if (countDownTimer != null) {
+		if (countDownTimer == null) {
 			countDownTimer = new MyCountDownTimer(interval, 1000);
 			countDownTimer.start();
 		}
@@ -117,7 +118,7 @@ public class HomeFragment extends Fragment {
 
 		@Override
 		public void onTick(long millisUntilFinished) {
-			score.setText("" + millisUntilFinished / 1000);
+			score.setText("" + millisUntilFinished / 1000 + " secs");
 		}
 	}
 }
