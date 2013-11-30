@@ -54,6 +54,7 @@ import com.sonyericsson.extras.liveware.extension.util.control.ControlViewGroup;
 
 import in.hacknight.diskonnect.AppState;
 import in.hacknight.diskonnect.R;
+import in.hacknight.diskonnect.Utils;
 import in.hacknight.model.Profile;
 import in.hacknight.storage.DataStorage;
 
@@ -162,13 +163,11 @@ class DisKonnectControlSmartWatch2 extends ControlExtension {
 
     @Override
     public void onResume() {
-        Log.d(DisKonnectExtensionService.LOG_TAG, "Starting animation");
         mDisKonnected = AppState.getIsDisconnected(mContext);
         if (mDisKonnected)
-    		sendImage(R.id.button_watch, R.drawable.btn_connect);
+            showLayout(R.layout.watch_control_view_conn	,null);
     	else
-    		sendImage(R.id.button_watch, R.drawable.btn_diskonnect);
-        showLayout(R.layout.watch_control_view	,null);
+            showLayout(R.layout.watch_control_view_disc	,null);
     }
 
     @Override
@@ -250,7 +249,24 @@ class DisKonnectControlSmartWatch2 extends ControlExtension {
     	populateProfiles();
         LayoutInflater inflater = (LayoutInflater) context.getSystemService
                 (Context.LAYOUT_INFLATER_SERVICE);
-        View layout = inflater.inflate(R.layout.watch_control_view
+        View layout = inflater.inflate(R.layout.watch_control_view_disc
+                , null);
+        mLayout = (ControlViewGroup) parseLayout(layout);
+        if (mLayout != null) {
+            ControlView button = mLayout.findViewById(R.id.button_watch);
+            button.setOnClickListener(new OnClickListener() {
+				@Override
+				public void onClick() {
+					showLayout(R.layout.watch_list_view, null);
+					sendListCount(R.id.listView, accs.size());
+					
+				}
+            });
+           
+        }
+        
+        
+        layout = inflater.inflate(R.layout.watch_control_view_conn
                 , null);
         mLayout = (ControlViewGroup) parseLayout(layout);
         if (mLayout != null) {
@@ -258,14 +274,10 @@ class DisKonnectControlSmartWatch2 extends ControlExtension {
             button.setOnClickListener(new OnClickListener() {
                 @Override
                 public void onClick() {
-                	if (!mDisKonnected) {
-                		showLayout(R.layout.watch_list_view,null);
-                        sendListCount(R.id.listView, accs.size());
-                	}
-                		//sendImage(R.id.button_watch, R.drawable.btn_connect);
-                	else
-                		sendImage(R.id.button_watch, R.drawable.btn_diskonnect);
-                	mDisKonnected = !mDisKonnected;
+                		
+                		Utils.startConnected(mContext, AppState.getCurrentProfileId(mContext));
+                    	onResume();
+
                 }
             });
            
@@ -282,6 +294,27 @@ class DisKonnectControlSmartWatch2 extends ControlExtension {
             }
         }
     }
+    
+    
+    @Override
+    public void onListItemClick(final ControlListItem listItem, final int clickType,
+            final int itemLayoutReference) {
+        Log.d(DisKonnectExtensionService.LOG_TAG, "Item clicked. Position " + listItem.listItemPosition
+                + ", itemLayoutReference " + itemLayoutReference + ". Type was: "
+                + (clickType == Control.Intents.CLICK_TYPE_SHORT ? "SHORT" : "LONG"));
+        
+    	Utils.startDisconnected(mContext, accs.get(listItem.listItemPosition).id);
+    	onResume();
+    }
+    @Override
+    public void onListItemSelected(ControlListItem listItem) {
+        super.onListItemSelected(listItem);
+        Log.d(DisKonnectExtensionService.LOG_TAG, "Item clicked.");
+        // We save the last "selected" position, this is the current visible
+        // list item index. The position can later be used on resume
+       // mLastKnowPosition = listItem.listItemPosition;
+    }
+    
     protected ControlListItem createControlListItem(int position) {
 
         ControlListItem item = new ControlListItem();
