@@ -19,22 +19,18 @@ import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
 
-public class ProfileSelectionFragment extends Fragment implements
-		OnItemClickListener {
+public class ProfileSelectionFragment extends Fragment implements OnItemClickListener {
 
 	public boolean isSettingsMode = false;
 
 	private ProfileAdaptor adapter = null;
 
 	@Override
-	public View onCreateView(LayoutInflater inflater, ViewGroup container,
-			Bundle savedInstanceState) {
+	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
-		View view = inflater.inflate(R.layout.frag_profile_selection,
-				container, false);
+		View view = inflater.inflate(R.layout.frag_profile_selection, container, false);
 		ListView lv = (ListView) view.findViewById(R.id.list_view);
-		ArrayList<Profile> allProfiles = (ArrayList<Profile>) new DataStorage(
-				getActivity()).getAllProfiles();
+		ArrayList<Profile> allProfiles = (ArrayList<Profile>) new DataStorage(getActivity()).getAllProfiles();
 
 		// Bad hack
 		if (isSettingsMode)
@@ -48,8 +44,7 @@ public class ProfileSelectionFragment extends Fragment implements
 	}
 
 	@Override
-	public void onItemClick(AdapterView<?> parent, View view, int position,
-			long id) {
+	public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
 		Profile profile = (Profile) this.adapter.cachedObjs.get(position);
 		if (isSettingsMode) {
