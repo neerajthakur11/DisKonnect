@@ -16,11 +16,11 @@ public class Utils {
 
 	public static void startConnected(Context ctx, int profileId) {
 		AppState.setCurrentProfileId(0, ctx);
-		AppState.setIsDisconnected(false, ctx);
 		long startTime = AppState.getStartTime(ctx);
 		Profile profile = (new DataStorage(ctx).getProfileById(profileId));
 		new DataStorage(ctx).storeEvent(new Event(profile.duration, (int) startTime, (int) System.currentTimeMillis(),
 				profile.id));
+		AppState.setIsDisconnected(false, ctx);
 	}
 
 }
