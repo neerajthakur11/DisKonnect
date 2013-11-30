@@ -49,7 +49,7 @@ import com.sonyericsson.extras.liveware.extension.util.registration.Registration
  */
 public class DisKonnectExtensionService extends ExtensionService {
 
-    public static final String EXTENSION_KEY = "com.sonymobile.smartconnect.extension.samplecontrol.key";
+    public static final String EXTENSION_KEY = "in.hacknight.sony.key";
 
     public static final String LOG_TAG = "DisKonnectControlExtension";
 

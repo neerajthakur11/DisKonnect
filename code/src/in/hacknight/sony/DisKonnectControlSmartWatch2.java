@@ -48,6 +48,8 @@ import com.sonyericsson.extras.liveware.extension.util.control.ControlTouchEvent
 import com.sonyericsson.extras.liveware.extension.util.control.ControlView;
 import com.sonyericsson.extras.liveware.extension.util.control.ControlView.OnClickListener;
 import com.sonyericsson.extras.liveware.extension.util.control.ControlViewGroup;
+
+import in.hacknight.diskonnect.AppState;
 import in.hacknight.diskonnect.R;
 
 /**
@@ -156,34 +158,7 @@ class DisKonnectControlSmartWatch2 extends ControlExtension {
     @Override
     public void onResume() {
         Log.d(DisKonnectExtensionService.LOG_TAG, "Starting animation");
-        /*
-        Bundle b1 = new Bundle();
-        b1.putInt(Control.Intents.EXTRA_LAYOUT_REFERENCE, R.id.sample_control_text_1);
-        b1.putString(Control.Intents.EXTRA_TEXT, "1");
-
-        Bundle b2 = new Bundle();
-        b2.putInt(Control.Intents.EXTRA_LAYOUT_REFERENCE, R.id.sample_control_text_2);
-        b2.putString(Control.Intents.EXTRA_TEXT, "2");
-
-        Bundle b3 = new Bundle();
-        b3.putInt(Control.Intents.EXTRA_LAYOUT_REFERENCE, R.id.sample_control_text_3);
-        b3.putString(Control.Intents.EXTRA_TEXT, "3");
-
-        Bundle b4 = new Bundle();
-        b4.putInt(Control.Intents.EXTRA_LAYOUT_REFERENCE, R.id.sample_control_text_4);
-        b4.putString(Control.Intents.EXTRA_TEXT, "4");
-
-        Bundle[] data = new Bundle[4];
-
-        data[0] = b1;
-        data[1] = b2;
-        data[2] = b3;
-        data[3] = b4;
-
-        showLayout(R.layout.sample_control_2, data);
-	
-        startAnimation();
-        */
+        //mDisKonnected = AppState.getIsDisconnected(mContext);
         if (mDisKonnected)
     		sendImage(R.id.button_watch, R.drawable.btn_connect);
     	else

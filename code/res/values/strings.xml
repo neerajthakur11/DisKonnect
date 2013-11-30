@@ -10,6 +10,6 @@
     <string name="preference_activity_title">DisKonnect control settings</string>
     <string name="preference_key_read_me">preference_key_read_me</string>
     <string name="preference_option_read_me_txt">The sample control extension starts an animation on the accessory when started. This extension supports SmartWatch2, SmartWatch and Smart Wireless Headset pro.\n\nIn SmartWatch the animation can be stopped by tapping on the screen. \n\nSmart Wireless Headset pro shows a scrolling text that can be paused and resumed with Play/Pause key. The text can also be manually controlled by using the the Previous and Next Keys. Control animation speed can be changed using Volume up and Volume down key.</string>
-    <string name="extension_name">Sample control</string>
-    <string name="configuration_text">Sample control settings</string>
+    <string name="extension_name">DisKonnect control</string>
+    <string name="configuration_text">DisKonnect control settings</string>
 </resources>
