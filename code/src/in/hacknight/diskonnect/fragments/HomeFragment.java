@@ -1,11 +1,5 @@
 package in.hacknight.diskonnect.fragments;
 
-import in.hacknight.diskonnect.AppState;
-import in.hacknight.diskonnect.MainActivity;
-import in.hacknight.diskonnect.R;
-import in.hacknight.model.Event;
-import in.hacknight.model.Profile;
-import in.hacknight.storage.DataStorage;
 import android.app.Fragment;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -13,16 +7,28 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.TextView;
+import in.hacknight.diskonnect.AppState;
+import in.hacknight.diskonnect.MainActivity;
+import in.hacknight.diskonnect.R;
+import in.hacknight.model.Event;
+import in.hacknight.model.Profile;
+import in.hacknight.model.ScoreCalculator;
+import in.hacknight.storage.DataStorage;
 
 public class HomeFragment extends Fragment {
 
 	Button disconnected = null;
-
-	@Override
-	public View onCreateView(LayoutInflater inflater, ViewGroup container,
-			Bundle savedInstanceState) {
-		View view = inflater.inflate(R.layout.frag_home, container, false);
+    View view = null;
+    @Override
+	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+	    view = inflater.inflate(R.layout.frag_home, container, false);
 		disconnected = (Button) view.findViewById(R.id.button_diconnected);
+		final Button disconnected = (Button) view.findViewById(R.id.button_diconnected);
+		TextView score = (TextView) view.findViewById(R.id.score);
+        ScoreCalculator scoreCalculator = new ScoreCalculator();
+        Integer score1 = scoreCalculator.getScore(getActivity());
+        score.setText(score1.toString());
 		disconnected.setOnClickListener(new OnClickListener() {
 
 			@Override
@@ -53,9 +59,13 @@ public class HomeFragment extends Fragment {
 		if (AppState.getIsDisconnected(getActivity())) {
 			disconnected.setText("Connect");
 		} else {
-			disconnected.setText("Disconnect");
+            Button disconnected = (Button) view.findViewById(R.id.button_diconnected);
+            TextView score = (TextView) view.findViewById(R.id.score);
+            ScoreCalculator scoreCalculator = new ScoreCalculator();
+            Integer score1 = scoreCalculator.getScore(getActivity());
+            score.setText(score1.toString());
+            disconnected.setText("Disconnect");
 		}
 		super.onResume();
 	}
-
 }

@@ -13,10 +13,14 @@ public class ScoreCalculator {
         int totalConsumedTime = 0;
         for(Event event : allEvents) {
             totalRequiredTime = totalRequiredTime + event.requiredDuration;
+            System.out.println(totalRequiredTime + " &&&&&&&&&&&&&&");
             totalConsumedTime = totalConsumedTime + (event.endTime - event.startTime);
+            System.out.println(totalConsumedTime + " &&&&&&&&&&&&&&!!!!!!!!!!!!!");
+
         }
 
         int score = (totalConsumedTime / totalRequiredTime) * 100;
+        System.out.println(score + "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
         return score > 100 ? 100 : score;
     }
 }
