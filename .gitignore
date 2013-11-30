@@ -13,6 +13,6 @@ local.properties
 out
 *.ipr
 *.iws
-/out
+code/out
 .DS_Store
 *.patch

@@ -5,6 +5,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.database.sqlite.SQLiteStatement;
+import in.hacknight.model.Event;
 import in.hacknight.model.Profile;
 
 import java.util.ArrayList;
@@ -36,9 +37,9 @@ public class DataStorage extends SQLiteOpenHelper {
             PROFILE_DURATION + " INTEGER ," +
             PROFILE_PROPERTY + " INTEGER );";
 
-    private static final String EVENT_DATABASE_CREATE = " CREATE TABLE IF NOT EXISTS " + PROFILE_TABLE_NAME + " (" +
+    private static final String EVENT_DATABASE_CREATE = "CREATE TABLE IF NOT EXISTS " + EVENT_TABLE_NAME + " (" +
                 _ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
-                EVENT_DURATION + " TEXT NOT NULL ," +
+                EVENT_DURATION + " INTEGER ," +
                 EVENT_START_TIME + " INTEGER ," +
                 EVENT_END_TIME + " INTEGER ," +
                 EVENT_PROFILE_ID + " INTEGER );";
@@ -56,7 +57,6 @@ public class DataStorage extends SQLiteOpenHelper {
         statement.bindLong(3, profile.duration);
         statement.executeInsert();
     }
-
     public List<Profile> getAllProfiles() {
         SQLiteDatabase db = getWritableDatabase();
         Cursor cursor = db.rawQuery("select * from " + PROFILE_TABLE_NAME,null);
@@ -67,33 +67,62 @@ public class DataStorage extends SQLiteOpenHelper {
                 String name = cursor.getString(cursor.getColumnIndex(PROFILE_NAME));
                 int duration = cursor.getInt(cursor.getColumnIndex(PROFILE_DURATION));
                 int property = cursor.getInt(cursor.getColumnIndex(PROFILE_PROPERTY));
-                list.add(new Profile(name, property, duration, false));
+                int id = cursor.getInt(cursor.getColumnIndex(_ID));
+                list.add(new Profile(name, property, duration, false, id));
                 cursor.moveToNext();
             }
         }
         cursor.close();
         return list;
     }
+     public List<Event> getAllEvents() {
+            SQLiteDatabase db = getWritableDatabase();
+            Cursor cursor = db.rawQuery("select * from " + EVENT_TABLE_NAME,null);
+            ArrayList<Event> list = new ArrayList<Event>();
 
-    public void storeEvent(int duration, int startTime, int endTime, int profileId) {
+            if (cursor .moveToFirst()) {
+                while (cursor.isAfterLast() == false) {
+                    int eventDuration = cursor.getInt(cursor.getColumnIndex(EVENT_DURATION));
+                    int eventStartTime = cursor.getInt(cursor.getColumnIndex(EVENT_START_TIME));
+                    int eventEndTime = cursor.getInt(cursor.getColumnIndex(EVENT_END_TIME));
+                    int eventProfileId = cursor.getInt(cursor.getColumnIndex(EVENT_PROFILE_ID));
+                    list.add(new Event(eventDuration, eventStartTime, eventEndTime, eventProfileId));
+                    cursor.moveToNext();
+                }
+            }
+            cursor.close();
+            return list;
+        }
+
+    public void storeEvent(Event event) {
         SQLiteDatabase db = getWritableDatabase();
-        SQLiteStatement statement = db.compileStatement("insert into " + EVENT_TABLE_NAME + " (" + EVENT_DURATION + "," + EVENT_PROFILE_ID + "," + EVENT_START_TIME + "," + EVENT_END_TIME + ") values ( ?, ?, ?, ?)");
-        statement.bindLong(1, duration);
-        statement.bindLong(2, profileId);
-        statement.bindLong(3, startTime);
-        statement.bindLong(3, endTime);
+        store(event, db);
+    }
+    private void store(Event event, SQLiteDatabase db) {
+        SQLiteStatement statement = db.compileStatement("insert into " + EVENT_TABLE_NAME + " ( " + EVENT_DURATION + " , " + EVENT_PROFILE_ID + " , " + EVENT_START_TIME + " , " + EVENT_END_TIME + " ) values (?, ?, ?, ?)");
+        statement.bindLong(1, event.requiredDuration);
+        statement.bindLong(2, event.profileId);
+        statement.bindLong(3, event.startTime);
+        statement.bindLong(3, event.endTime);
         statement.executeInsert();
+
     }
 
     @Override
     public void onCreate(SQLiteDatabase db) {
         db.execSQL(PROFILE_DATABASE_CREATE);
-        store(new Profile("default", 10, 1111, false), db);
         db.execSQL(EVENT_DATABASE_CREATE);
+        store(new Profile("default", 600000, 1111, false), db);
+        store(new Event(600000, 1385762598, 1385762598, 1), db);
     }
+
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
     }
 
+    public void updateProfile(Profile profile) {
+        SQLiteDatabase db = getWritableDatabase();
+        db.execSQL("UPDATE " + PROFILE_TABLE_NAME + " SET " + PROFILE_NAME + " = '" + profile.name + "'," + PROFILE_PROPERTY + " = " + profile.property  + "," + PROFILE_DURATION + " = " + profile.duration  + " WHERE  "+ _ID + " = " + profile.id + ";");
+    }
 }

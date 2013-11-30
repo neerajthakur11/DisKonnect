@@ -1,9 +1,5 @@
 package in.hacknight.adaptors;
 
-import in.hacknight.model.Profile;
-
-import java.util.List;
-
 import android.R;
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -11,6 +7,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
+import in.hacknight.model.Profile;
+
+import java.util.List;
 
 public class ProfileAdaptor extends ArrayAdapter<Profile> {
 
@@ -33,7 +32,6 @@ public class ProfileAdaptor extends ArrayAdapter<Profile> {
 		} else {
 			rowView = convertView;
 		}
-
 		TextView tv = (TextView) rowView.findViewById(R.id.text1);
 
 		if (this.cachedObjs != null) {
@@ -43,7 +41,6 @@ public class ProfileAdaptor extends ArrayAdapter<Profile> {
 			else
 				tv.setText(profile.name);
 		}
-
 		return rowView;
 	}
 }
