@@ -28,7 +28,7 @@ public class HomeFragment extends Fragment {
 
         ScoreCalculator scoreCalculator = new ScoreCalculator();
         long score1 = scoreCalculator.getScore(getActivity());
-        score.setText(Long.toString(score1));
+        score.setText((Long.toString(score1)) + "%");
 		disconnected.setOnClickListener(new OnClickListener() {
 
 			@Override
@@ -57,7 +57,7 @@ public class HomeFragment extends Fragment {
             TextView score = (TextView) view.findViewById(R.id.score);
             ScoreCalculator scoreCalculator = new ScoreCalculator();
             long score1 = scoreCalculator.getScore(getActivity());
-            score.setText(Long.toString(score1));
+            score.setText((Long.toString(score1)) + "%");
             disconnected.setText("Disconnect");
 		}
 		super.onResume();
