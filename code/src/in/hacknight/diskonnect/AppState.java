@@ -24,14 +24,14 @@ public class AppState {
 		SharedPreferences preferences = PreferenceManager
 				.getDefaultSharedPreferences(context);
 		SharedPreferences.Editor editor = preferences.edit();
-		editor.putInt("IS_DISCONNECTED", _id);
+		editor.putInt("PROFILE_ID", _id);
 		editor.commit();
 	}
 
 	public static int getCurrentProfileId(Context context) {
 		SharedPreferences preferences = PreferenceManager
 				.getDefaultSharedPreferences(context);
-		return preferences.getInt("IS_DISCONNECTED", 0);
+		return preferences.getInt("PROFILE_ID", 0);
 	}
 
 	public static void setStartTime(long time, Context context) {
