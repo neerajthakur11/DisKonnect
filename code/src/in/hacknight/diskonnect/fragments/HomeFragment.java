@@ -84,7 +84,7 @@ public class HomeFragment extends Fragment {
 			TextView score = (TextView) view.findViewById(R.id.score);
 			ScoreCalculator scoreCalculator = new ScoreCalculator();
 			long score1 = scoreCalculator.getScore(getActivity());
-			score.setText(Long.toString(score1));
+			score.setText((Long.toString(score1)) + "%");
 			header.setText("Your determination over time:");
 			disconnected.setText("Disconnect");
 		}
