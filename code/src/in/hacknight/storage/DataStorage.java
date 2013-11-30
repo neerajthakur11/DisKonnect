@@ -133,7 +133,7 @@ public class DataStorage extends SQLiteOpenHelper {
         db.execSQL(PROFILE_DATABASE_CREATE);
         db.execSQL(EVENT_DATABASE_CREATE);
         store(new Profile("default", 600000, 1111, false), db);
-        store(new Event(600000, 1385762598, 1385762598, 1), db);
+        store(new Event(600000, 0, 0, 1), db);
     }
 
 
