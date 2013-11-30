@@ -1,3 +1,4 @@
+contrib/*
 code/project.properties
 .DS_Store
 ._*
