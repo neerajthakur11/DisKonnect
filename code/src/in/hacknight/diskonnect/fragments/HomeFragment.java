@@ -24,10 +24,13 @@ public class HomeFragment extends Fragment {
 
 			@Override
 			public void onClick(View arg0) {
-				if (AppState.isDisconnected) {
-					AppState.currentProfile = null;
-					AppState.isDisconnected = false;
+				if (AppState.getIsDisconnected(getActivity())) {
+					AppState.setCurrentProfileId(0, getActivity());
+					AppState.setIsDisconnected(false, getActivity());
 					disconnected.setText("Disconnect");
+
+					// TODO Add an event.
+
 				} else {
 					MainActivity ma = (MainActivity) getActivity();
 					ma.addFragmentToStack(new ProfileSelectionFragment());
@@ -40,7 +43,7 @@ public class HomeFragment extends Fragment {
 
 	@Override
 	public void onResume() {
-		if (AppState.isDisconnected) {
+		if (AppState.getIsDisconnected(getActivity())) {
 			disconnected.setText("Connect");
 		} else {
 			disconnected.setText("Disconnect");

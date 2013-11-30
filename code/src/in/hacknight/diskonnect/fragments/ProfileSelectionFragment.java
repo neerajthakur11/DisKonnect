@@ -58,8 +58,8 @@ public class ProfileSelectionFragment extends Fragment implements
 				fragment.profile = profile;
 			((MainActivity) getActivity()).addFragmentToStack(fragment);
 		} else {
-			AppState.currentProfile = profile;
-			AppState.isDisconnected = true;
+			AppState.setCurrentProfileId(profile.id, getActivity());
+			AppState.setIsDisconnected(true, getActivity());
 			FragmentManager fm = getActivity().getFragmentManager();
 			fm.popBackStack();
 		}
