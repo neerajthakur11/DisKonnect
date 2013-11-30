@@ -58,6 +58,9 @@ public class ProfileSelectionFragment extends Fragment implements
 				fragment.profile = profile;
 			((MainActivity) getActivity()).addFragmentToStack(fragment);
 		} else {
+			// The timer should start here.
+			long epoch = System.currentTimeMillis();
+			AppState.setStartTime(epoch, getActivity());
 			AppState.setCurrentProfileId(profile.id, getActivity());
 			AppState.setIsDisconnected(true, getActivity());
 			FragmentManager fm = getActivity().getFragmentManager();

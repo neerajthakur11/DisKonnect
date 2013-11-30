@@ -34,4 +34,18 @@ public class AppState {
 		return preferences.getInt("IS_DISCONNECTED", 0);
 	}
 
+	public static void setStartTime(long time, Context context) {
+		SharedPreferences preferences = PreferenceManager
+				.getDefaultSharedPreferences(context);
+		SharedPreferences.Editor editor = preferences.edit();
+		editor.putLong("START_TIME", time);
+		editor.commit();
+	}
+
+	public static long getStartTime(Context context) {
+		SharedPreferences preferences = PreferenceManager
+				.getDefaultSharedPreferences(context);
+		return preferences.getLong("START_TIME", 0);
+	}
+
 }

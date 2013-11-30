@@ -75,6 +75,26 @@ public class DataStorage extends SQLiteOpenHelper {
         cursor.close();
         return list;
     }
+    
+    public Profile getProfileById(int _id_) {
+        SQLiteDatabase db = getWritableDatabase();
+        Cursor cursor = db.rawQuery("select * from " + PROFILE_TABLE_NAME + " where id = " + Integer.toString(_id_) ,null);
+
+        if (cursor .moveToFirst()) {
+            while (cursor.isAfterLast() == false) {
+                String name = cursor.getString(cursor.getColumnIndex(PROFILE_NAME));
+                int duration = cursor.getInt(cursor.getColumnIndex(PROFILE_DURATION));
+                int property = cursor.getInt(cursor.getColumnIndex(PROFILE_PROPERTY));
+                int id = cursor.getInt(cursor.getColumnIndex(_ID));
+                cursor.close();
+                return new Profile(name, property, duration, false, id);
+            }
+        }
+        
+        return null;
+        
+    }
+    
      public List<Event> getAllEvents() {
             SQLiteDatabase db = getWritableDatabase();
             Cursor cursor = db.rawQuery("select * from " + EVENT_TABLE_NAME,null);

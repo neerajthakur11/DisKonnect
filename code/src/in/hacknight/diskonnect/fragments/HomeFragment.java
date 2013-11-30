@@ -3,6 +3,9 @@ package in.hacknight.diskonnect.fragments;
 import in.hacknight.diskonnect.AppState;
 import in.hacknight.diskonnect.MainActivity;
 import in.hacknight.diskonnect.R;
+import in.hacknight.model.Event;
+import in.hacknight.model.Profile;
+import in.hacknight.storage.DataStorage;
 import android.app.Fragment;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -29,7 +32,11 @@ public class HomeFragment extends Fragment {
 					AppState.setIsDisconnected(false, getActivity());
 					disconnected.setText("Disconnect");
 
-					// TODO Add an event.
+					long startTime = AppState.getStartTime(getActivity());
+					Profile profile = (new DataStorage(getActivity()).getProfileById(AppState.getCurrentProfileId(getActivity())));
+					
+					new DataStorage(getActivity()).storeEvent(new Event(profile.duration, (int)startTime, (int)System.currentTimeMillis(), profile.id));
+					
 
 				} else {
 					MainActivity ma = (MainActivity) getActivity();
