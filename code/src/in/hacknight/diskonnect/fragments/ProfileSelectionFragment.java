@@ -1,6 +1,7 @@
 package in.hacknight.diskonnect.fragments;
 
 import in.hacknight.adaptors.ProfileAdaptor;
+import in.hacknight.diskonnect.AppState;
 import in.hacknight.diskonnect.MainActivity;
 import in.hacknight.diskonnect.R;
 import in.hacknight.model.Profile;
@@ -57,10 +58,10 @@ public class ProfileSelectionFragment extends Fragment implements
 				fragment.profile = profile;
 			((MainActivity) getActivity()).addFragmentToStack(fragment);
 		} else {
+			AppState.setCurrentProfileId(profile.id, getActivity());
+			AppState.setIsDisconnected(true, getActivity());
 			FragmentManager fm = getActivity().getFragmentManager();
 			fm.popBackStack();
 		}
-
 	}
-
 }
