@@ -17,16 +17,18 @@ import android.widget.TextView;
 public class HomeFragment extends Fragment {
 
 	Button disconnected = null;
-    View view = null;
-    @Override
+	View view = null;
+
+	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-	    view = inflater.inflate(R.layout.frag_home, container, false);
+		view = inflater.inflate(R.layout.frag_home, container, false);
 		disconnected = (Button) view.findViewById(R.id.button_diconnected);
 		final Button disconnected = (Button) view.findViewById(R.id.button_diconnected);
 		TextView score = (TextView) view.findViewById(R.id.score);
+
         ScoreCalculator scoreCalculator = new ScoreCalculator();
-        Integer score1 = scoreCalculator.getScore(getActivity());
-        score.setText(score1.toString());
+        long score1 = scoreCalculator.getScore(getActivity());
+        score.setText((Long.toString(score1)) + "%");
 		disconnected.setOnClickListener(new OnClickListener() {
 
 			@Override
@@ -50,11 +52,12 @@ public class HomeFragment extends Fragment {
 		if (AppState.getIsDisconnected(getActivity())) {
 			disconnected.setText("Connect");
 		} else {
+
             Button disconnected = (Button) view.findViewById(R.id.button_diconnected);
             TextView score = (TextView) view.findViewById(R.id.score);
             ScoreCalculator scoreCalculator = new ScoreCalculator();
-            Integer score1 = scoreCalculator.getScore(getActivity());
-            score.setText(score1.toString());
+            long score1 = scoreCalculator.getScore(getActivity());
+            score.setText((Long.toString(score1)) + "%");
             disconnected.setText("Disconnect");
 		}
 		super.onResume();
