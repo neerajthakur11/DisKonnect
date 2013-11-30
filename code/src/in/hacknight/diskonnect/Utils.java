@@ -19,7 +19,8 @@ public class Utils {
 		AppState.setIsDisconnected(false, ctx);
 		long startTime = AppState.getStartTime(ctx);
 		Profile profile = (new DataStorage(ctx).getProfileById(profileId));
-		new DataStorage(ctx).storeEvent(new Event(profile.duration, (int)startTime, (int)System.currentTimeMillis(), profile.id));
+		new DataStorage(ctx).storeEvent(new Event(profile.duration,
+				(int) startTime, (int) System.currentTimeMillis(), profile.id));
 	}
 
 }
