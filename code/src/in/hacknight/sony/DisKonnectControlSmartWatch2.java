@@ -32,6 +32,9 @@ Copyright (c) 2011-2013, Sony Mobile Communications AB
 
 package in.hacknight.sony;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import android.content.Context;
 import android.os.Bundle;
 import android.os.Handler;
@@ -51,6 +54,8 @@ import com.sonyericsson.extras.liveware.extension.util.control.ControlViewGroup;
 
 import in.hacknight.diskonnect.AppState;
 import in.hacknight.diskonnect.R;
+import in.hacknight.model.Profile;
+import in.hacknight.storage.DataStorage;
 
 /**
  * The sample control for SmartWatch handles the control on the accessory. This
@@ -232,8 +237,17 @@ class DisKonnectControlSmartWatch2 extends ControlExtension {
 
    
     
-    private String[] accs= {"for Yoga", "for Drive","for Sleep"};
+    
+    private void populateProfiles() {
+    	DataStorage ds = new DataStorage(mContext);
+    	accs = ds.getAllProfiles();
+    	
+     	
+    }
+    private List<Profile> accs;
+    
     private void setupClickables(Context context) {
+    	populateProfiles();
         LayoutInflater inflater = (LayoutInflater) context.getSystemService
                 (Context.LAYOUT_INFLATER_SERVICE);
         View layout = inflater.inflate(R.layout.watch_control_view
@@ -246,8 +260,7 @@ class DisKonnectControlSmartWatch2 extends ControlExtension {
                 public void onClick() {
                 	if (!mDisKonnected) {
                 		showLayout(R.layout.watch_list_view,null);
-                        sendListCount(R.id.listView, accs.length);
-
+                        sendListCount(R.id.listView, accs.size());
                 	}
                 		//sendImage(R.id.button_watch, R.drawable.btn_connect);
                 	else
@@ -289,12 +302,12 @@ class DisKonnectControlSmartWatch2 extends ControlExtension {
         // Header data
         Bundle headerBundle = new Bundle();
         headerBundle.putInt(Control.Intents.EXTRA_LAYOUT_REFERENCE, R.id.title);
-        headerBundle.putString(Control.Intents.EXTRA_TEXT, accs[position]);
+        headerBundle.putString(Control.Intents.EXTRA_TEXT, accs.get(position).name);
 
         // Body data
         Bundle bodyBundle = new Bundle();
         bodyBundle.putInt(Control.Intents.EXTRA_LAYOUT_REFERENCE, R.id.body);
-        bodyBundle.putString(Control.Intents.EXTRA_TEXT, accs[position]);
+        bodyBundle.putString(Control.Intents.EXTRA_TEXT, accs.get(position).duration+" secs");
 
         item.layoutData = new Bundle[3];
         //item.layoutData[0] = iconBundle;
