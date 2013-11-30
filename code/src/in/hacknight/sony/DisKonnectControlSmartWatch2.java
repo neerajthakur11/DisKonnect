@@ -95,8 +95,9 @@ class DisKonnectControlSmartWatch2 extends ControlExtension {
             throw new IllegalArgumentException("handler == null");
         }
         mHandler = handler;
-        setupClickables(context);
         initializeMenus();
+        setupClickables(mContext);
+
     }
 
     private void initializeMenus() {
@@ -163,11 +164,55 @@ class DisKonnectControlSmartWatch2 extends ControlExtension {
 
     @Override
     public void onResume() {
+    	LayoutInflater inflater = (LayoutInflater) mContext.getSystemService
+                (Context.LAYOUT_INFLATER_SERVICE);
         mDisKonnected = AppState.getIsDisconnected(mContext);
-        if (mDisKonnected)
+        if (mDisKonnected) {
             showLayout(R.layout.watch_control_view_conn	,null);
-    	else
+            
+            View layout = inflater.inflate(R.layout.watch_control_view_conn
+                    , null);
+            mLayout = (ControlViewGroup) parseLayout(layout);
+            if (mLayout != null) {
+                ControlView button = mLayout.findViewById(R.id.button_watch);
+                button.setOnClickListener(new OnClickListener() {
+                    @Override
+                    public void onClick() {
+                    		
+                    		Utils.startConnected(mContext, AppState.getCurrentProfileId(mContext));
+                        	onResume();
+
+                    }
+                });
+               
+            }
+            
+            
+            
+        }
+    	else {
             showLayout(R.layout.watch_control_view_disc	,null);
+            
+            
+            
+            View layout = inflater.inflate(R.layout.watch_control_view_disc
+                    , null);
+             mLayout = (ControlViewGroup) parseLayout(layout);
+            if (mLayout != null) {
+                ControlView button = mLayout.findViewById(R.id.button_watch);
+                button.setOnClickListener(new OnClickListener() {
+    				@Override
+    				public void onClick() {
+    			    	populateProfiles();
+    					showLayout(R.layout.watch_list_view, null);
+    					sendListCount(R.id.listView, accs.size());
+    					
+    				}
+                });
+               
+            }
+    	}
+
     }
 
     @Override
@@ -246,42 +291,10 @@ class DisKonnectControlSmartWatch2 extends ControlExtension {
     private List<Profile> accs;
     
     private void setupClickables(Context context) {
-    	populateProfiles();
-        LayoutInflater inflater = (LayoutInflater) context.getSystemService
-                (Context.LAYOUT_INFLATER_SERVICE);
-        View layout = inflater.inflate(R.layout.watch_control_view_disc
-                , null);
-        mLayout = (ControlViewGroup) parseLayout(layout);
-        if (mLayout != null) {
-            ControlView button = mLayout.findViewById(R.id.button_watch);
-            button.setOnClickListener(new OnClickListener() {
-				@Override
-				public void onClick() {
-					showLayout(R.layout.watch_list_view, null);
-					sendListCount(R.id.listView, accs.size());
-					
-				}
-            });
-           
-        }
+       
         
         
-        layout = inflater.inflate(R.layout.watch_control_view_conn
-                , null);
-        mLayout = (ControlViewGroup) parseLayout(layout);
-        if (mLayout != null) {
-            ControlView button = mLayout.findViewById(R.id.button_watch);
-            button.setOnClickListener(new OnClickListener() {
-                @Override
-                public void onClick() {
-                		
-                		Utils.startConnected(mContext, AppState.getCurrentProfileId(mContext));
-                    	onResume();
-
-                }
-            });
-           
-        }
+       
     }
     
 
