@@ -71,7 +71,7 @@ public class ProfileSettingsFragment extends Fragment {
 		if ((profile.property & Params.PERMISSION_DATA) != 0)
 			cb.setChecked(true);
 
-		EditText ed = (EditText) view.findViewById(R.id.edittextProfileName);
+		EditText ed = (EditText) view.findViewById(R.id.editTextProfileName);
 		ed.setText(profile.name);
 
 	}

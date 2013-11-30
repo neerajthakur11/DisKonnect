@@ -1,5 +1,13 @@
 package in.hacknight.diskonnect.fragments;
 
+import in.hacknight.adaptors.ProfileAdaptor;
+import in.hacknight.diskonnect.MainActivity;
+import in.hacknight.diskonnect.R;
+import in.hacknight.model.Profile;
+import in.hacknight.storage.DataStorage;
+
+import java.util.ArrayList;
+
 import android.app.Fragment;
 import android.app.FragmentManager;
 import android.os.Bundle;
@@ -9,13 +17,6 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
-import in.hacknight.adaptors.ProfileAdaptor;
-import in.hacknight.diskonnect.MainActivity;
-import in.hacknight.diskonnect.R;
-import in.hacknight.model.Profile;
-import in.hacknight.storage.DataStorage;
-
-import java.util.ArrayList;
 
 public class ProfileSelectionFragment extends Fragment implements
 		OnItemClickListener {
@@ -25,7 +26,8 @@ public class ProfileSelectionFragment extends Fragment implements
 	private ProfileAdaptor adapter = null;
 
 	@Override
-	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+	public View onCreateView(LayoutInflater inflater, ViewGroup container,
+			Bundle savedInstanceState) {
 
 		View view = inflater.inflate(R.layout.frag_profile_selection,
 				container, false);
@@ -45,19 +47,20 @@ public class ProfileSelectionFragment extends Fragment implements
 	}
 
 	@Override
-	public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+	public void onItemClick(AdapterView<?> parent, View view, int position,
+			long id) {
 
 		Profile profile = (Profile) this.adapter.cachedObjs.get(position);
 		if (isSettingsMode) {
 			ProfileSettingsFragment fragment = new ProfileSettingsFragment();
-			if (!profile.isAddNewRow){
+			if (!profile.isAddNewRow) {
 				fragment.profile = profile;
-			((MainActivity) getActivity()).addFragmentToStack(fragment);
-		} else {
-			FragmentManager fm = getActivity().getFragmentManager();
-			fm.popBackStack();
+				((MainActivity) getActivity()).addFragmentToStack(fragment);
+			} else {
+				FragmentManager fm = getActivity().getFragmentManager();
+				fm.popBackStack();
+			}
+
 		}
-
 	}
-
 }
