@@ -2,12 +2,12 @@ package in.hacknight.model;
 
 public class Event {
 
-    public int requiredDuration;
-    public int startTime;
-    public int endTime;
-    public int profileId;
+    public long requiredDuration;
+    public long startTime;
+    public long endTime;
+    public long profileId;
 
-    public Event(int requiredDuration, int startTime, int endTime, int profileId ) {
+    public Event(long requiredDuration, long startTime, long endTime, long profileId ) {
         this.endTime = endTime;
         this.startTime = startTime;
         this.requiredDuration = requiredDuration;

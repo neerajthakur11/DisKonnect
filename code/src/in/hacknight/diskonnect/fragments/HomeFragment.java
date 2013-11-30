@@ -25,7 +25,7 @@ public class HomeFragment extends Fragment {
 		final Button disconnected = (Button) view.findViewById(R.id.button_diconnected);
 		TextView score = (TextView) view.findViewById(R.id.score);
         ScoreCalculator scoreCalculator = new ScoreCalculator();
-        Integer score1 = scoreCalculator.getScore(getActivity());
+        Long score1 = scoreCalculator.getScore(getActivity());
         score.setText(score1.toString());
 		disconnected.setOnClickListener(new OnClickListener() {
 
@@ -53,7 +53,7 @@ public class HomeFragment extends Fragment {
             Button disconnected = (Button) view.findViewById(R.id.button_diconnected);
             TextView score = (TextView) view.findViewById(R.id.score);
             ScoreCalculator scoreCalculator = new ScoreCalculator();
-            Integer score1 = scoreCalculator.getScore(getActivity());
+            Long score1 = scoreCalculator.getScore(getActivity());
             score.setText(score1.toString());
             disconnected.setText("Disconnect");
 		}
