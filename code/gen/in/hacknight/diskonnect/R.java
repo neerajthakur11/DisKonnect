@@ -10,6 +10,17 @@ package in.hacknight.diskonnect;
 public final class R {
     public static final class attr {
     }
+    public static final class color {
+        public static final int darker_gray=0x7f070007;
+        public static final int gray=0x7f070006;
+        public static final int lighter_gray=0x7f070008;
+        public static final int smart_watch_2_text_color_grey=0x7f070003;
+        public static final int smart_watch_2_text_color_orange=0x7f070004;
+        public static final int smart_watch_2_text_color_white=0x7f070005;
+        public static final int smart_watch_text_color_grey=0x7f070000;
+        public static final int smart_watch_text_color_orange=0x7f070001;
+        public static final int smart_watch_text_color_white=0x7f070002;
+    }
     public static final class dimen {
         /**  Default screen margins, per the Android Design guidelines. 
 
@@ -17,40 +28,118 @@ public final class R {
          screen margins) for sw720dp devices (e.g. 10" tablets) in landscape here.
     
          */
-        public static final int activity_horizontal_margin=0x7f040000;
-        public static final int activity_vertical_margin=0x7f040001;
+        public static final int activity_horizontal_margin=0x7f060019;
+        public static final int activity_vertical_margin=0x7f06001a;
+        public static final int headset_pro_control_height=0x7f060002;
+        public static final int headset_pro_control_width=0x7f060001;
+        public static final int headset_pro_text_size=0x7f060000;
+        public static final int smart_watch_2_control_height=0x7f060012;
+        public static final int smart_watch_2_control_width=0x7f060011;
+        public static final int smart_watch_2_statusbar_height=0x7f060013;
+        public static final int smart_watch_2_text_size_large=0x7f060016;
+        public static final int smart_watch_2_text_size_medium=0x7f060017;
+        public static final int smart_watch_2_text_size_small=0x7f060018;
+        public static final int smart_watch_2_widget_height=0x7f060015;
+        public static final int smart_watch_2_widget_width=0x7f060014;
+        public static final int smart_watch_control_height=0x7f060004;
+        public static final int smart_watch_control_width=0x7f060003;
+        public static final int smart_watch_text_size_normal=0x7f06000b;
+        public static final int smart_watch_text_size_small=0x7f06000c;
+        /**  Badge only contain numbers and is language independant. 
+         */
+        public static final int smart_watch_text_size_widget_badge=0x7f060010;
+        public static final int smart_watch_text_size_widget_name=0x7f06000d;
+        public static final int smart_watch_text_size_widget_text=0x7f06000f;
+        public static final int smart_watch_text_size_widget_time=0x7f06000e;
+        public static final int smart_watch_widget_height_inner=0x7f060008;
+        public static final int smart_watch_widget_height_outer=0x7f060006;
+        public static final int smart_watch_widget_text_background_height=0x7f06000a;
+        public static final int smart_watch_widget_text_background_width=0x7f060009;
+        public static final int smart_watch_widget_width_inner=0x7f060007;
+        public static final int smart_watch_widget_width_outer=0x7f060005;
     }
     public static final class drawable {
-        public static final int ic_launcher=0x7f020000;
+        public static final int actions_call=0x7f020000;
+        public static final int actions_reply=0x7f020001;
+        public static final int actions_view_in_phone=0x7f020002;
+        public static final int badge_counter=0x7f020003;
+        public static final int btn_connect=0x7f020004;
+        public static final int btn_diskonnect=0x7f020005;
+        public static final int headset_pro_cancel_icn=0x7f020006;
+        public static final int headset_pro_focus_xs_icn=0x7f020007;
+        public static final int headset_pro_ok_icn=0x7f020008;
+        public static final int ic_launcher=0x7f020009;
+        public static final int icn_18x18_black_white_sample_control=0x7f02000a;
+        public static final int icon_extension=0x7f02000b;
+        public static final int icon_extension48=0x7f02000c;
+        public static final int text_bg=0x7f02000d;
+        public static final int watch_icon=0x7f02000e;
+        public static final int widget_frame=0x7f02000f;
     }
     public static final class id {
-        public static final int action_settings=0x7f08000c;
-        public static final int buttonDecrease=0x7f080008;
-        public static final int buttonIncrease=0x7f08000a;
-        public static final int buttonSave=0x7f08000b;
-        public static final int button_diconnected=0x7f080001;
-        public static final int checkBoxCalls=0x7f080005;
-        public static final int checkBoxData=0x7f080007;
-        public static final int checkBoxSMS=0x7f080004;
-        public static final int checkBoxWifi=0x7f080006;
-        public static final int edittextProfileName=0x7f080003;
-        public static final int list_view=0x7f080002;
-        public static final int main_view=0x7f080000;
-        public static final int textView1=0x7f080009;
+        public static final int action_settings=0x7f0a001e;
+        public static final int body=0x7f0a001a;
+        public static final int buttonDecrease=0x7f0a0008;
+        public static final int buttonIncrease=0x7f0a000a;
+        public static final int buttonSave=0x7f0a000b;
+        public static final int button_diconnected=0x7f0a0001;
+        public static final int button_watch=0x7f0a0016;
+        public static final int checkBoxCalls=0x7f0a0005;
+        public static final int checkBoxData=0x7f0a0007;
+        public static final int checkBoxSMS=0x7f0a0004;
+        public static final int checkBoxWifi=0x7f0a0006;
+        public static final int content_container=0x7f0a0017;
+        public static final int edittextProfileName=0x7f0a0003;
+        public static final int header=0x7f0a001c;
+        public static final int listView=0x7f0a001d;
+        public static final int list_view=0x7f0a0002;
+        public static final int main_view=0x7f0a0000;
+        public static final int row1=0x7f0a001b;
+        public static final int smart_watch_notification_widget_background=0x7f0a000c;
+        public static final int smart_watch_notification_widget_text_background=0x7f0a000d;
+        public static final int smart_watch_notification_widget_text_name=0x7f0a0010;
+        public static final int smart_watch_notification_widget_text_time=0x7f0a000e;
+        public static final int smart_watch_notification_widget_text_title=0x7f0a000f;
+        public static final int smart_watch_widget_custom_image=0x7f0a0011;
+        public static final int smart_watch_widget_custom_text_view=0x7f0a0012;
+        public static final int smart_watch_widget_event_counter_badge=0x7f0a0014;
+        public static final int smart_watch_widget_event_counter_text=0x7f0a0015;
+        public static final int smart_watch_widget_icon=0x7f0a0013;
+        public static final int textView1=0x7f0a0009;
+        public static final int thumbnail=0x7f0a0018;
+        public static final int title=0x7f0a0019;
     }
     public static final class layout {
         public static final int activity_main=0x7f030000;
         public static final int frag_home=0x7f030001;
         public static final int frag_profile_selection=0x7f030002;
         public static final int frag_profile_settings=0x7f030003;
+        public static final int smart_watch_notification_widget=0x7f030004;
+        public static final int smart_watch_widget=0x7f030005;
+        public static final int watch_control_view=0x7f030006;
+        public static final int watch_list_dataview=0x7f030007;
+        public static final int watch_list_view=0x7f030008;
     }
     public static final class menu {
-        public static final int main=0x7f070000;
+        public static final int main=0x7f090000;
     }
     public static final class string {
         public static final int action_settings=0x7f050001;
+        /**  At least one dummy resource is needed to satisfy aapt.
+    Otherwise it complains about no res folder. 
+         */
         public static final int app_name=0x7f050000;
+        public static final int configuration_text=0x7f050008;
+        public static final int extension_name=0x7f050007;
         public static final int hello_world=0x7f050002;
+        /**  Title of preference activity 
+         */
+        public static final int preference_activity_title=0x7f050004;
+        public static final int preference_key_read_me=0x7f050005;
+        /**  Menu option shown in preferences 
+         */
+        public static final int preference_option_read_me=0x7f050003;
+        public static final int preference_option_read_me_txt=0x7f050006;
     }
     public static final class style {
         /** 
@@ -74,10 +163,13 @@ public final class R {
     
  API 14 theme customizations can go here. 
          */
-        public static final int AppBaseTheme=0x7f060000;
+        public static final int AppBaseTheme=0x7f080000;
         /**  Application theme. 
  All customizations that are NOT specific to a particular API-level can go here. 
          */
-        public static final int AppTheme=0x7f060001;
+        public static final int AppTheme=0x7f080001;
+    }
+    public static final class xml {
+        public static final int preference=0x7f040000;
     }
 }
